@@ -5,4 +5,5 @@
  */
 export const environment = {
   production: true,
+  apiURL: 'http://localhost/api-provedor-skeleton/api-proveedor-skeleton/public/index.php/',
 };

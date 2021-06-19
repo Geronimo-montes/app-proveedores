@@ -1,0 +1,7 @@
+{
+  "/api/*": {
+    "target": "http://localhost/api-provedor-skeleton/api-proveedor-skeleton/public/index.php",
+    "secure": false,
+    "logLevel": "debug"
+  }
+}

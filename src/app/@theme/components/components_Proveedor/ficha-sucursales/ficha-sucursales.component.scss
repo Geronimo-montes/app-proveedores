@@ -1,0 +1,40 @@
+@import '../../../../@theme/styles/themes';
+
+@include nb-install-component() {
+
+  .picture {
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding: 0;
+  }
+
+  .details {
+    position: absolute;
+    bottom: 0;
+    background-color:rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 0;
+  }
+
+  .description {
+    text-align: justify;
+    color: white;
+  }
+
+  
+  .link-icon {
+    font-size: 1.2rem;
+  }
+  
+  .text-icon {
+    margin-top: 0.8rem;
+    margin-left: 0.5rem;
+  }
+
+  .social-link {
+    text-decoration: none;
+    text-justify: auto;
+    align-items: center;
+  }
+}

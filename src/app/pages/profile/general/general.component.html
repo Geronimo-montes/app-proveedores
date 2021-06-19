@@ -1,0 +1,28 @@
+<div class="row"
+  *ngIf="accessChecker.isGranted('view', 'perfil_proveedor') | async">
+  <!-- Proveedor -->
+  <div class="col-xxxl-3 col-md-3 pointer">
+    <ngx-status-card [title]="'Perfil General'" [type]="'info'"
+      [icon]="'fas fa-address-card'" [routerLink]="perfilUser">
+    </ngx-status-card>
+  </div>
+
+  <div class="col-xxxl-3 col-md-3 pointer">
+    <ngx-status-card [title]="'Datos de la Cuenta'" [type]="'warning'"
+      [icon]="'fas fa-user-edit'" [routerLink]="credencialesUser">
+    </ngx-status-card>
+  </div>
+
+  <div class="col-xxxl-3 col-md-3 pointer">
+    <ngx-status-card [title]="'Historial ventas'" [type]="'success'"
+      [icon]="'fas fa-chart-pie'" [routerLink]="historialVentas">
+    </ngx-status-card>
+  </div>
+
+  <div class="col-xxxl-3 col-md-3 pointer">
+    <ngx-status-card [title]="'Productos'" [type]="'primary'"
+      [icon]="'fas fa-list'" [routerLink]="productos">
+    </ngx-status-card>
+  </div>
+</div>
+<router-outlet></router-outlet>

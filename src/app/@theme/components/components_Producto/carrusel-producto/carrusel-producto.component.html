@@ -1,0 +1,39 @@
+<div class="row mb-4 ml-2">
+  <h4 class="text-muted">{{title}}</h4>
+</div>
+
+<div class="col-md-12">
+  <div class="row justify-content-between">
+    <button nbButton ghost status="black" (click)="productoAnterior()">
+      <nb-icon icon="arrow-ios-back"></nb-icon>
+    </button>
+
+    <nb-card class="col-md-2" *ngFor="let producto of _productos"
+      (click)="verProducto(producto.id)">
+
+      <nb-card-header [nbSpinner]="!!!producto" nbSpinnerStatus="danger">
+        <img *ngIf="!load" [src]="producto.urlImagenes[0]" class="d-block w-100"
+          alt="...">
+      </nb-card-header>
+
+      <nb-card-body class="p-2">
+        <strong>{{producto.nombre}}</strong><br>
+        <span>{{producto.descripcionCorta.slice(0,50)}}...</span>
+      </nb-card-body>
+
+      <nb-card-footer>
+        <div class="row justify-content-between">
+          {{producto.precio | currency}}
+          <span *ngIf="producto.descuento > 0"
+            class="badge badge-pill badge-danger p-2">-%{{producto.descuento}}</span>
+          <span *ngIf="producto.descuento == 0"
+            class="badge badge-pill badge-primary p-2">Sin descuento</span>
+        </div>
+      </nb-card-footer>
+    </nb-card>
+
+    <button nbButton ghost status="black" (click)="productoSiguiente()">
+      <nb-icon icon="arrow-ios-forward"></nb-icon>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+@import '../../../../@theme/styles/themes';
+
+@include nb-install-component() {
+
+  .picture {
+    background-position: center;
+    background-size: contain;
+    position: relative;
+    border-top-left-radius: nb-theme(card-border-radius);
+    border-top-right-radius: nb-theme(card-border-radius);
+    border-radius: 50%;
+    flex: 1;
+  }
+
+  nb-card-footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .link-icon {
+    font-size: 1.2rem;
+  }
+
+  nb-icon {
+    font-size: 2rem;
+
+    ::ng-deep svg {
+      vertical-align: top;
+    }
+  }
+
+  .social-link {
+    text-decoration: none;
+  }
+
+  .social-link-ext {
+    text-decoration: none;
+    margin-left: 1.5rem;
+  }
+
+  .link-icon-ext {
+    font-size: 1.75rem;
+  }
+
+  .text-icon {
+    margin-left: 0.5rem;
+    // margin-top: .2rem;
+  }
+  
+}

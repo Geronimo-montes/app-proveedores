@@ -1,10 +1,38 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeService } from '@nebular/theme';
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
+import {
+  NbMenuItem,
+  NbMenuService,
+  NbSearchService,
+  NbSidebarService,
+} from '@nebular/theme';
 
-import { UserData } from '../../../@core/data/users';
+import { filter, map } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
+
 import { LayoutService } from '../../../@core/utils';
-import { map, takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
+
+import { ProductoService } from '../../../@core/mock/producto.service';
+
+import { IuserProveedor, IuserTienda } from '../../../@core/data/usersModel';
+import { Iproducto } from '../../../@core/data/productoModel';
+import { UserProviderService } from '../../../@core/mock/UserProvider.service';
+
+const userMenuConst: NbMenuItem[] = [
+  {
+    title: 'Perfil de usuario',
+    link: '/pages/perfil/general/user-perfil',
+    icon: 'person',
+
+  }, {
+    title: 'Cerrar Sesion',
+    icon: 'log-out',
+  },
+];
 
 @Component({
   selector: 'ngx-header',
@@ -13,82 +41,79 @@ import { Subject } from 'rxjs';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 
-  private destroy$: Subject<void> = new Subject<void>();
-  userPictureOnly: boolean = false;
-  user: any;
+  private suscripciones$: Array<Subscription> = [];
 
-  themes = [
-    {
-      value: 'default',
-      name: 'Light',
-    },
-    {
-      value: 'dark',
-      name: 'Dark',
-    },
-    {
-      value: 'cosmic',
-      name: 'Cosmic',
-    },
-    {
-      value: 'corporate',
-      name: 'Corporate',
-    },
-  ];
+  linkLogin: string = '/auth/login';
 
-  currentTheme = 'default';
+  userMenu: NbMenuItem[] = userMenuConst;
+  userPictureOnly: boolean = true;
+  user: IuserProveedor | IuserTienda = null;
 
-  userMenu = [ { title: 'Profile' }, { title: 'Log out' } ];
-
-  constructor(private sidebarService: NbSidebarService,
-              private menuService: NbMenuService,
-              private themeService: NbThemeService,
-              private userService: UserData,
-              private layoutService: LayoutService,
-              private breakpointService: NbMediaBreakpointsService) {
+  constructor(
+    private sidebarService: NbSidebarService,
+    private menuService: NbMenuService,
+    private layoutService: LayoutService,
+    private searchService: NbSearchService,
+    private router: Router,
+    private productoService: ProductoService,
+    private userProvideService: UserProviderService,
+  ) {
   }
 
   ngOnInit() {
-    this.currentTheme = this.themeService.currentTheme;
+    // datos del usuario logueado
+    const sub1$ = this.userProvideService.getUser$()
+      .subscribe((user) => this.user = user);
+    // Suscripcion al obserble de busqueda
+    const sub2$ = this.searchService.onSearchSubmit()
+      .subscribe(serach => this.search(serach.term));
+    // evento clic para el menu contextual
+    const sub3$ = this.menuService.onItemClick().pipe(
+      filter(({ tag }) => tag === 'userMenu'),
+      map(({ item: { title } }) => title),
+    ).subscribe((title) => (title === 'Cerrar Sesion') ? this.logOut() : null);
 
-    this.userService.getUsers()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((users: any) => this.user = users.nick);
-
-    const { xl } = this.breakpointService.getBreakpointsMap();
-    this.themeService.onMediaQueryChange()
-      .pipe(
-        map(([, currentBreakpoint]) => currentBreakpoint.width < xl),
-        takeUntil(this.destroy$),
-      )
-      .subscribe((isLessThanXl: boolean) => this.userPictureOnly = isLessThanXl);
-
-    this.themeService.onThemeChange()
-      .pipe(
-        map(({ name }) => name),
-        takeUntil(this.destroy$),
-      )
-      .subscribe(themeName => this.currentTheme = themeName);
+    this.suscripciones$.push(sub1$, sub2$, sub3$);
   }
 
   ngOnDestroy() {
-    this.destroy$.next();
-    this.destroy$.complete();
-  }
-
-  changeTheme(themeName: string) {
-    this.themeService.changeTheme(themeName);
+    this.suscripciones$.forEach(suscripcion => suscripcion.unsubscribe());
   }
 
   toggleSidebar(): boolean {
     this.sidebarService.toggle(true, 'menu-sidebar');
     this.layoutService.changeLayoutSize();
-
     return false;
   }
 
   navigateHome() {
     this.menuService.navigateHome();
     return false;
+  }
+
+  logOut() {
+    this.userProvideService.logOut$();
+  }
+
+  /**
+   * @description Reimplementar para mostarr la lista de ocurrencias. Actualmente redirije a la primera ocurrencia.
+   * @param termino
+   */
+  search(termino: string) {
+    // console.log('desde func search:', termino);
+    this.productoService.getProductos().subscribe((productos: Iproducto[]) => {
+      let id = 0;
+      productos.every((prod: Iproducto) => {
+        if (prod.nombre.toLocaleLowerCase().indexOf(termino.toLocaleLowerCase()) > -1) {
+          id = prod.id;
+          return false;
+        } else {
+          return true;
+        }
+      });
+
+      if (id !== 0) this.router.navigate(['/pages/home/producto/', id]);
+      else this.router.navigate(['/pages/home/productos']);
+    });
   }
 }

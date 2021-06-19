@@ -1,0 +1,80 @@
+<nb-flip-card>
+  <nb-card-front>
+    <nb-card [size]="''">
+      <nb-card-header>
+        Detalle proveedor
+      </nb-card-header>
+      <nb-card-body>
+        <div class="row">
+          <img class="picture col-md-3" [src]="user?.ruta_imagen"
+            [alt]="user?.nombre">
+
+          <div class="col-md-9">
+            <ul style="list-style: none;" class="p-0">
+              <li>
+                <h4>{{user?.nombre}}</h4>
+              </li>
+              <nb-icon [status]="(user?.calificacion < 1)? 'primary': ''"
+                icon="star"></nb-icon>
+              <nb-icon [status]="(user?.calificacion < 2)? 'primary': ''"
+                icon="star"></nb-icon>
+              <nb-icon [status]="(user?.calificacion < 3)? 'primary': ''"
+                icon="star"></nb-icon>
+              <nb-icon [status]="(user?.calificacion < 4)? 'primary': ''"
+                icon="star"></nb-icon>
+              <nb-icon [status]="(user?.calificacion < 5)? 'primary': ''"
+                icon="star"></nb-icon>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-12 mt-5">
+          <p class="text-justify" style="text-indent: 2rem;">{{
+            user?.descripcion_extensa }} </p>
+        </div>
+
+        <div class="mt-4">
+          <p style="text-indent: 1rem;"><strong>Contacto</strong></p>
+          <div class="row ml-3">
+            <a class="col-md-4 social-link row">
+              <i class="text-primary link-icon fas fa-phone"></i>
+              <p class="text-icon"> {{user?.telefono}}</p>
+            </a>
+
+            <a class="col-md-4 social-link row">
+              <i class="text-primary link-icon ion-social-whatsapp"></i>
+              <p class="text-icon"> {{user?.whatsapp}}</p>
+            </a>
+
+            <a class="col-md-4 social-link row">
+              <i class="text-primary link-icon fas fa-at"></i>
+              <p class="text-icon"> {{user?.email}}</p>
+            </a>
+          </div>
+        </div>
+      </nb-card-body>
+      <nb-card-footer>
+        <div class="row col-md-12">
+          <a class="social-link-ext" [href]="user?.facebook"
+            [target]="user?.facebook">
+            <i class="link-icon-ext fab fa-facebook"></i>
+          </a>
+
+          <a class="social-link-ext" [href]="user?.paginaweb"
+            [target]="user?.paginaweb">
+            <i class="link-icon-ext fas fa-link"></i>
+          </a>
+        </div>
+      </nb-card-footer>
+    </nb-card>
+  </nb-card-front>
+
+  <nb-card-back>
+    <nb-card [size]="'large'">
+      <nb-card-header>
+        Detalle proveedor
+      </nb-card-header>
+      <nb-card-body></nb-card-body>
+      <nb-card-footer></nb-card-footer>
+    </nb-card>
+  </nb-card-back>
+</nb-flip-card>

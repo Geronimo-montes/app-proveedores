@@ -1,0 +1,155 @@
+<div class="row">
+  <div class="col-md-8">
+    <!-- Datos generaes  -->
+    <form [formGroup]="formGeneral" (ngSubmit)="updateDatosGenerales();">
+      <nb-card [size]="''">
+        <nb-card-header>Datos de perfil</nb-card-header>
+        <nb-card-body>
+
+          <div class="form-group mt-0">
+            <label class="label">Nombre del proveedor</label>
+            <input formControlName="nombre_comercial" type="text" nbInput
+              fullWidth shape="rectangle" placeholder="Nombre del proveedor"
+              [nbPopover]="templateRef" nbPopoverTrigger="focus"
+              nbPopoverClass='danger'
+              (keyup)="error = getError('nombre_comercial', formGeneral);"
+              (focus)="error = getError('nombre_comercial', formGeneral);"
+              [status]="(!formGeneral.get('nombre_comercial').valid)? invalid : valid">
+          </div>
+
+          <div class="form-group mb-0 mt-0">
+            <label class="label">Descripcion (maximo 500
+              caracteres){{countLetras}}/600</label>
+            <textarea formControlName="descripcion_extensa" [rows]="5" nbInput
+              fullWidth shape="rectangle" [style]="'resize: none;'"
+              placeholder="Descripcion del proveedor"
+              placeholder="Nombre del proveedor" [nbPopover]="templateRef"
+              nbPopoverTrigger="focus" nbPopoverClass='danger'
+              (keyup)="error = getError('descripcion_extensa', formGeneral);"
+              (focus)="error = getError('descripcion_extensa', formGeneral);"
+              (keyup)="calcularLetrasFalntates();"
+              [status]="(!formGeneral.get('descripcion_extensa').valid)? invalid : valid"
+              primary></textarea>
+            <label class="label">{{countLetras}}/600</label>
+          </div>
+
+          <div class="row  mt-0 mb-0">
+            <div class="col-sm-6 form-group">
+              <label class="label">Telefono</label>
+              <input formControlName="telefono" type="text" nbInput fullWidth
+                shape="rectangle" placeholder="Nick"
+                placeholder="Nombre del proveedor" [nbPopover]="templateRef"
+                nbPopoverTrigger="focus" nbPopoverClass='danger'
+                (keyup)="error = getError('telefono', formGeneral);"
+                (focus)="error = getError('telefono', formGeneral);"
+                [status]="(!formGeneral.get('telefono').valid)? invalid : valid">
+            </div>
+
+            <div class="col-sm-6 form-group">
+              <label class="label">Whatsapp</label>
+              <input formControlName="whatsapp" type="text" nbInput fullWidth
+                shape="rectangle" placeholder="Last Name"
+                placeholder="Nombre del proveedor" [nbPopover]="templateRef"
+                nbPopoverTrigger="focus" nbPopoverClass='danger'
+                (keyup)="error = getError('whatsapp', formGeneral);"
+                (focus)="error = getError('whatsapp', formGeneral);"
+                [status]="(!formGeneral.get('whatsapp').valid)? invalid : valid">
+            </div>
+          </div>
+
+          <div class="row mt-0 mb-0">
+            <div class="col-sm-6 form-group">
+              <label class="label">Facebook</label>
+              <input formControlName="facebook" type="text" nbInput fullWidth
+                shape="rectangle" placeholder="Nick"
+                placeholder="Nombre del proveedor" [nbPopover]="templateRef"
+                nbPopoverTrigger="focus" nbPopoverClass='danger'
+                (keyup)="error = getError('facebook', formGeneral);"
+                (focus)="error = getError('facebook', formGeneral);"
+                [status]="(!formGeneral.get('facebook').valid)? invalid : valid">
+            </div>
+
+            <div class="col-sm-6 form-group">
+              <label class="label">Pagina Web</label>
+              <input formControlName="paginaweb" type="text" nbInput fullWidth
+                shape="rectangle" placeholder="Last Name"
+                placeholder="Nombre del proveedor" [nbPopover]="templateRef"
+                nbPopoverTrigger="focus" nbPopoverClass='danger'
+                (keyup)="error = getError('paginaweb', formGeneral);"
+                (focus)="error = getError('paginaweb', formGeneral);"
+                [status]="(!formGeneral.get('paginaweb').valid)? invalid : valid">
+            </div>
+          </div>
+        </nb-card-body>
+        <nb-card-footer>
+          <div class="row justify-content-end m-2">
+            <button class="m-0 mr-3" nbButton [status]="valid" [size]="'small'"
+              hero [disabled]="formGeneral.invalid" type="submit">
+              Actualizar información
+            </button>
+          </div>
+        </nb-card-footer>
+      </nb-card>
+    </form>
+  </div>
+  <div class="col-md-4">
+    <!-- Imagen de perfil -->
+    <nb-card [size]="''">
+      <nb-card-body class="row justify-content-center">
+        <img class="picture col-md-5" [src]="user?.ruta_imagen"
+          [alt]="user?.nombre">
+      </nb-card-body>
+      <nb-card-footer class="row justify-content-center">
+        <input type="file" #file hidden (change)="fileEvnet($event)">
+        <button class="m-0" nbButton [status]="valid" [size]="'small'" hero
+          type="button" (click)="file.click()">
+          Actualizar foto de perfil
+        </button>
+      </nb-card-footer>
+    </nb-card>
+    <!-- credenciales de usuario -->
+    <form [formGroup]="formCredenciales" (ngSubmit)="updateCredenciales()">
+      <nb-card [size]="''">
+        <nb-card-header>Credenciales de autenticacion</nb-card-header>
+        <nb-card-body>
+          <input formControlName="email" type="email" nbInput fullWidth
+            shape="rectangle" placeholder="Correo Electronico"
+            [nbPopover]="templateRef" nbPopoverTrigger="focus"
+            nbPopoverClass='danger'
+            (keyup)="error = getError('email', formCredenciales);"
+            (focus)="error = getError('email', formCredenciales);"
+            [status]="(!formCredenciales.get('email').valid)? invalid : valid">
+
+          <div class="full-name-inputs">
+            <input formControlName="password" type="password" nbInput fullWidth
+              shape="rectangle" placeholder="Password" [nbPopover]="templateRef"
+              nbPopoverTrigger="focus" nbPopoverPlacement="bottom"
+              (keyup)="error = getError('password', formCredenciales);"
+              (focus)="error = getError('password', formCredenciales);"
+              [status]="(!formCredenciales.get('password').valid)? invalid : valid">
+
+            <input formControlName="password_confirmacion" type="password"
+              nbInput fullWidth shape="rectangle"
+              placeholder="Confirmar Password" [nbPopover]="templateRef"
+              nbPopoverTrigger="focus" nbPopoverPlacement="bottom"
+              (keyup)="error = validarConfirmacionPass()"
+              (focus)="error = validarConfirmacionPass()"
+              [status]="(!formCredenciales.valid)? invalid : valid">
+          </div>
+        </nb-card-body>
+        <nb-card-footer class="row justify-content-end">
+          <button class="mr-3" nbButton [status]="valid" [size]="'small'" hero
+            [disabled]="formCredenciales.invalid" type="submit">
+            Actualizar Credencuales
+          </button>
+        </nb-card-footer>
+      </nb-card>
+    </form>
+  </div>
+</div>
+<!-- Template para los popovers -->
+<ng-template #templateRef>
+  <div *ngIf="error !== ''" class="bg-danger rounded p-2">
+    <span><i class="fas fa-exclamation-circle warning m-1"></i>{{error}}</span>
+  </div>
+</ng-template>

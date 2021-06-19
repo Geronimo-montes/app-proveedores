@@ -1,0 +1,141 @@
+<!-- <div class="container row"> -->
+<!-- <div class="col-md-12"> -->
+<nb-card [size]="" class="col-md-12">
+  <nb-card-body class="row">
+    <!-- Carrucel e imagenes -->
+    <nb-card [size]="" class="col-md-4 border-0">
+      <ngx-carrusel-imagen [imagenes]="producto.urlImagenes">
+      </ngx-carrusel-imagen>
+    </nb-card>
+
+    <!-- Datos del producto -->
+    <nb-card [size]="'medium'" class="col-md-5 border-0">
+      <nb-card-header class="border-0">
+        <div class="row justify-content-between align-items-center">
+          <!-- nombre del producto -->
+          <h6 class="col-md-10">{{producto.nombre}}</h6>
+          <!-- agregar a deseos -->
+          <button nbButton ghost status="primary" class="col-md-2">
+            <nb-icon icon="heart"></nb-icon>
+          </button>
+        </div>
+      </nb-card-header>
+      <nb-card-body>
+        <!-- precio -->
+        <p class="h4 font-weight-normal text-muted">
+          {{producto.precio | currency}}
+          <strong>x {{producto.formatoVenta}}</strong>
+        </p>
+
+        <span *ngIf="producto.descuento > 0"
+          class="badge badge-pill badge-danger p-2">
+          %{{producto.descuento}} de descuento
+        </span>
+
+        <span *ngIf="producto.descuento === 0"
+          class="badge badge-pill badge-primary p-2">
+          Producto verificado
+        </span>
+
+        <p class="mt-2">{{ producto.descripcionExtensa }}</p>
+
+        <table class="table table-borderless">
+          <tbody>
+            <tr>
+              <th scope="row">
+                <p>Caracteristica #1</p>
+              </th>
+              <td class="text-success">Descripcion caracteristica</td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <p>Caracteristica #2</p>
+              </th>
+              <td class="text-success">Descripcion caracteristica</td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <p>Caracteristica #3</p>
+              </th>
+              <td class="text-success">Descripcion caracteristica</td>
+            </tr>
+          </tbody>
+        </table>
+      </nb-card-body>
+    </nb-card>
+
+    <!-- Informacion de pedido -->
+    <nb-card [size]="'medium'" class="col-md-3 border-0">
+      <nb-card-header>
+        <div class="row justify-content-center">
+          <span>Vendido por:</span>
+          <a href="" class="h6 ml-2 text-primary">{{producto.proveedor}}</a>
+        </div>
+
+        <div class="row justify-content-center align-items-center">
+          <span>Calificacion:</span>
+          <nb-button-group class="ml-2">
+            <button nbButton>
+              <nb-icon status="primary" icon="star"></nb-icon>
+            </button>
+            <button nbButton>
+              <nb-icon status="primary" icon="star"></nb-icon>
+            </button>
+            <button nbButton ghost status="black">
+              <nb-icon status="primary" icon="star"></nb-icon>
+            </button>
+            <button nbButton>
+              <nb-icon status="primary" icon="star"></nb-icon>
+            </button>
+            <button nbButton>
+              <nb-icon icon="star"></nb-icon>
+            </button>
+          </nb-button-group>
+        </div>
+      </nb-card-header>
+
+      <nb-card-body class="col">
+        <span><strong class="h5">Stock disponible</strong></span>
+
+        <p class="h6 font-weight-normal"><strong class="m-2">{{
+            producto.stock }}</strong>
+          {{ producto.formatoVenta }}(s) disponibles
+        </p>
+
+        <p class="mt-2 h5"><br><strong>Cantidad a pedir</strong></p>
+
+        <div class="mt-2 row justify-content-center align-items-center">
+
+          <nb-select name="cantidad" #cantidad placeholder="Cantidad"
+            size="small" selected="0" hero status="warning"
+            (selectedChange)="setTotal(cantidad.selected)">
+            <nb-option value="0">Cantidad</nb-option>
+            <nb-option value="1">1 Caja</nb-option>
+            <nb-option value="2">2 Cajas</nb-option>
+            <nb-option value="3">3 Cajas</nb-option>
+            <nb-option value="4">4 Cajas</nb-option>
+          </nb-select>
+
+          <p class="ml-2 h4 font-weight-normal">x{{producto.precio |
+            currency}}</p>
+        </div>
+
+        <input class="mt-2" type="text" status="success" nbInput fullWidth
+          fieldSize="medium" [readonly]="true" name="total" [(ngModel)]="total">
+      </nb-card-body>
+
+      <nb-card-footer class="row justify-content-center">
+        <button nbButton status="primary">Agergar<nb-icon
+            icon="shopping-cart-outline"></nb-icon></button>
+      </nb-card-footer>
+    </nb-card>
+  </nb-card-body>
+</nb-card>
+<!-- </div> -->
+
+<div class="container">
+  <ngx-carrusel-producto [productos]="productosSimilares"
+    [title]="'Productos similares'">
+  </ngx-carrusel-producto>
+</div>
+<!-- </div> -->

@@ -2,246 +2,166 @@ import { NbMenuItem } from '@nebular/theme';
 
 export const MENU_ITEMS: NbMenuItem[] = [
   {
-    title: 'E-commerce',
-    icon: 'shopping-cart-outline',
-    link: '/pages/dashboard',
-    home: true,
-  },
-  {
-    title: 'IoT Dashboard',
+    title: 'Pagina principal',
     icon: 'home-outline',
-    link: '/pages/iot-dashboard',
-  },
-  {
-    title: 'FEATURES',
+    link: '/pages/home/productos',
+    home: true,
+  }, {
+    title: 'Categorías',
+    icon: 'menu-2-outline',
     group: true,
-  },
-  {
-    title: 'Layout',
-    icon: 'layout-outline',
+  }, {
+    title: 'Despensa',
+    icon: 'menu-2-outline',
+    expanded: false,
     children: [
       {
-        title: 'Stepper',
-        link: '/pages/layout/stepper',
-      },
-      {
-        title: 'List',
-        link: '/pages/layout/list',
-      },
-      {
-        title: 'Infinite List',
-        link: '/pages/layout/infinite-list',
-      },
-      {
-        title: 'Accordion',
-        link: '/pages/layout/accordion',
-      },
-      {
-        title: 'Tabs',
-        pathMatch: 'prefix',
-        link: '/pages/layout/tabs',
+        title: 'Aceites y Mantecas',
+        icon: 'menu-2-outline',
+      }, {
+        title: 'Alimentos enlatados',
+        icon: 'menu-2-outline',
+      }, {
+        title: 'Cereales, barras y avenas',
+        icon: 'menu-2-outline',
+      }, {
+        title: 'Cremas, sopas y pures',
+        icon: 'menu-2-outline',
+      }, {
+        title: 'Galletas',
+        icon: 'menu-2-outline',
+      }, {
+        title: 'Granos y semillas',
+        icon: 'menu-2-outline',
+      }, {
+        title: 'Panes y pastelillos',
+        icon: 'menu-2-outline',
       },
     ],
-  },
-  {
-    title: 'Forms',
-    icon: 'edit-2-outline',
+  }, {
+    title: 'Frutas y verduras',
+    icon: 'menu-2-outline',
+    expanded: false,
     children: [
       {
-        title: 'Form Inputs',
-        link: '/pages/forms/inputs',
-      },
-      {
-        title: 'Form Layouts',
-        link: '/pages/forms/layouts',
-      },
-      {
-        title: 'Buttons',
-        link: '/pages/forms/buttons',
-      },
-      {
-        title: 'Datepicker',
-        link: '/pages/forms/datepicker',
+        title: 'Frutas',
+        icon: 'menu-2-outline',
+      }, {
+        title: 'Verduras',
+        icon: 'menu-2-outline',
       },
     ],
-  },
-  {
-    title: 'UI Features',
-    icon: 'keypad-outline',
-    link: '/pages/ui-features',
+  }, {
+    title: 'Lácteos y huevo',
+    icon: 'menu-2-outline',
+    expanded: false,
     children: [
       {
-        title: 'Grid',
-        link: '/pages/ui-features/grid',
-      },
-      {
-        title: 'Icons',
-        link: '/pages/ui-features/icons',
-      },
-      {
-        title: 'Typography',
-        link: '/pages/ui-features/typography',
-      },
-      {
-        title: 'Animated Searches',
-        link: '/pages/ui-features/search-fields',
+        title: 'Leche',
+        icon: 'menu-2-outline',
+      }, {
+        title: 'Huevo',
+        icon: 'menu-2-outline',
+      }, {
+        title: 'Yoghurts',
+        icon: 'menu-2-outline',
       },
     ],
-  },
-  {
-    title: 'Modal & Overlays',
-    icon: 'browser-outline',
+  }, {
+    title: 'Queso, Salchichas y gourmet',
+    icon: 'menu-2-outline',
+    expanded: false,
     children: [
       {
-        title: 'Dialog',
-        link: '/pages/modal-overlays/dialog',
-      },
-      {
-        title: 'Window',
-        link: '/pages/modal-overlays/window',
-      },
-      {
-        title: 'Popover',
-        link: '/pages/modal-overlays/popover',
-      },
-      {
-        title: 'Toastr',
-        link: '/pages/modal-overlays/toastr',
-      },
-      {
-        title: 'Tooltip',
-        link: '/pages/modal-overlays/tooltip',
+        title: 'Quesos',
+        icon: 'menu-2-outline',
+      }, {
+        title: 'Jamone',
+        icon: 'menu-2-outline',
+      }, {
+        title: 'Salchichas',
+        icon: 'menu-2-outline',
+      }, {
+        title: 'Tocino',
+        icon: 'menu-2-outline',
       },
     ],
-  },
-  {
-    title: 'Extra Components',
-    icon: 'message-circle-outline',
+  }, {
+    title: 'Carnes, pescados y mariscos',
+    icon: 'menu-2-outline',
+    expanded: false,
     children: [
       {
-        title: 'Calendar',
-        link: '/pages/extra-components/calendar',
+        title: 'Res y ternera',
+        icon: 'menu-2-outline',
       },
       {
-        title: 'Progress Bar',
-        link: '/pages/extra-components/progress-bar',
+        title: 'Cerdo',
+        icon: 'menu-2-outline',
       },
       {
-        title: 'Spinner',
-        link: '/pages/extra-components/spinner',
+        title: 'Aves',
+        icon: 'menu-2-outline',
       },
       {
-        title: 'Alert',
-        link: '/pages/extra-components/alert',
-      },
-      {
-        title: 'Calendar Kit',
-        link: '/pages/extra-components/calendar-kit',
-      },
-      {
-        title: 'Chat',
-        link: '/pages/extra-components/chat',
+        title: 'Pescado y mariscos',
+        icon: 'menu-2-outline',
       },
     ],
-  },
-  {
-    title: 'Maps',
-    icon: 'map-outline',
+  }, {
+    title: 'Congelados y refigerados',
+    icon: 'menu-2-outline',
+    expanded: false,
     children: [
       {
-        title: 'Google Maps',
-        link: '/pages/maps/gmaps',
+        title: 'Comidas congeladas',
+        icon: 'menu-2-outline',
       },
       {
-        title: 'Leaflet Maps',
-        link: '/pages/maps/leaflet',
+        title: 'Frutas y verduras congeladas',
+        icon: 'menu-2-outline',
       },
       {
-        title: 'Bubble Maps',
-        link: '/pages/maps/bubble',
-      },
-      {
-        title: 'Search Maps',
-        link: '/pages/maps/searchmap',
+        title: 'Helados y postres',
+        icon: 'menu-2-outline',
       },
     ],
-  },
-  {
-    title: 'Charts',
-    icon: 'pie-chart-outline',
+  }, {
+    title: 'Bebidas',
+    icon: 'menu-2-outline',
+    expanded: false,
     children: [
       {
-        title: 'Echarts',
-        link: '/pages/charts/echarts',
-      },
-      {
-        title: 'Charts.js',
-        link: '/pages/charts/chartjs',
-      },
-      {
-        title: 'D3',
-        link: '/pages/charts/d3',
+        title: 'Agua natural',
+        icon: 'menu-2-outline',
+      }, {
+        title: 'Refrescos',
+        icon: 'menu-2-outline',
       },
     ],
-  },
-  {
-    title: 'Editors',
-    icon: 'text-outline',
-    children: [
-      {
-        title: 'TinyMCE',
-        link: '/pages/editors/tinymce',
-      },
-      {
-        title: 'CKEditor',
-        link: '/pages/editors/ckeditor',
-      },
-    ],
-  },
-  {
-    title: 'Tables & Data',
-    icon: 'grid-outline',
-    children: [
-      {
-        title: 'Smart Table',
-        link: '/pages/tables/smart-table',
-      },
-      {
-        title: 'Tree Grid',
-        link: '/pages/tables/tree-grid',
-      },
-    ],
-  },
-  {
-    title: 'Miscellaneous',
-    icon: 'shuffle-2-outline',
-    children: [
-      {
-        title: '404',
-        link: '/pages/miscellaneous/404',
-      },
-    ],
-  },
-  {
-    title: 'Auth',
-    icon: 'lock-outline',
-    children: [
-      {
-        title: 'Login',
-        link: '/auth/login',
-      },
-      {
-        title: 'Register',
-        link: '/auth/register',
-      },
-      {
-        title: 'Request Password',
-        link: '/auth/request-password',
-      },
-      {
-        title: 'Reset Password',
-        link: '/auth/reset-password',
-      },
-    ],
+  }, {
+    title: 'Vinos, licores y cervezas',
+    icon: 'menu-2-outline',
+  }, {
+    title: 'Pan, tortillas y alimentos',
+    icon: 'menu-2-outline',
+  }, {
+    title: 'Bebés',
+    icon: 'menu-2-outline',
+  }, {
+    title: 'Farmacia',
+    icon: 'menu-2-outline',
+  }, {
+    title: 'Cuidado personal y belleza',
+    icon: 'menu-2-outline',
+  }, {
+    title: 'Hogar y desechables',
+    icon: 'menu-2-outline',
+  }, {
+    title: 'Limpieza y cuidado del hogar',
+    icon: 'menu-2-outline',
+  }, {
+    title: 'Mascotas',
+    icon: 'menu-2-outline',
   },
 ];

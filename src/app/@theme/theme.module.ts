@@ -1,4 +1,5 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import {
   NbActionsModule,
@@ -12,16 +13,21 @@ import {
   NbSelectModule,
   NbIconModule,
   NbThemeModule,
+  NbCardModule,
+  NbTooltipModule,
+  NbPopoverModule,
+  NbInputModule,
+  NbSpinnerModule,
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbSecurityModule } from '@nebular/security';
+import { DEFAULT_THEME } from './styles/theme.default';
+import { COSMIC_THEME } from './styles/theme.cosmic';
+import { CORPORATE_THEME } from './styles/theme.corporate';
+import { DARK_THEME } from './styles/theme.dark';
+import { NgxDropzoneModule } from 'ngx-dropzone';
+import { ReactiveFormsModule } from '@angular/forms';
 
-import {
-  FooterComponent,
-  HeaderComponent,
-  SearchInputComponent,
-  TinyMCEComponent,
-} from './components';
 import {
   CapitalizePipe,
   PluralPipe,
@@ -29,15 +35,25 @@ import {
   TimingPipe,
   NumberWithCommasPipe,
 } from './pipes';
+
 import {
   OneColumnLayoutComponent,
   ThreeColumnsLayoutComponent,
   TwoColumnsLayoutComponent,
 } from './layouts';
-import { DEFAULT_THEME } from './styles/theme.default';
-import { COSMIC_THEME } from './styles/theme.cosmic';
-import { CORPORATE_THEME } from './styles/theme.corporate';
-import { DARK_THEME } from './styles/theme.dark';
+
+import {
+  AltaProductoComponent,
+  CarruselImagenComponent,
+  CarruselProductoComponent,
+  FichaPerfilComponent,
+  FichaSucursalesComponent,
+  FooterComponent,
+  HeaderComponent,
+  SearchInputComponent,
+  StatusCardComponent,
+  TinyMCEComponent,
+} from './components';
 
 const NB_MODULES = [
   NbLayoutModule,
@@ -52,7 +68,16 @@ const NB_MODULES = [
   NbSelectModule,
   NbIconModule,
   NbEvaIconsModule,
+  NbTooltipModule,
+  RouterModule,
+  NbCardModule,
+  NbPopoverModule,
+  NgxDropzoneModule,
+  NbInputModule,
+  ReactiveFormsModule,
+  NbSpinnerModule,
 ];
+
 const COMPONENTS = [
   HeaderComponent,
   FooterComponent,
@@ -61,7 +86,21 @@ const COMPONENTS = [
   OneColumnLayoutComponent,
   ThreeColumnsLayoutComponent,
   TwoColumnsLayoutComponent,
+
+  // componentes usuario
+  StatusCardComponent,
+
+  // componente proveedor
+  FichaPerfilComponent,
+  FichaSucursalesComponent,
+
+  // componentes producto
+  AltaProductoComponent,
+  CarruselImagenComponent,
+  CarruselProductoComponent,
+
 ];
+
 const PIPES = [
   CapitalizePipe,
   PluralPipe,
@@ -82,9 +121,9 @@ export class ThemeModule {
       providers: [
         ...NbThemeModule.forRoot(
           {
-            name: 'default',
+            name: 'cosmic',
           },
-          [ DEFAULT_THEME, COSMIC_THEME, CORPORATE_THEME, DARK_THEME ],
+          [DEFAULT_THEME, COSMIC_THEME, CORPORATE_THEME, DARK_THEME],
         ).providers,
       ],
     };

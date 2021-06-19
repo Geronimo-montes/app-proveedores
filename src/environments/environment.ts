@@ -10,4 +10,5 @@
 
 export const environment = {
   production: false,
+  apiURL: 'http://localhost/api-provedor-skeleton/api-proveedor-skeleton/public/index.php/',
 };

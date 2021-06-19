@@ -1,0 +1,15 @@
+.img-miniatura {
+  padding: 0.1rem;
+  border: 0.08rem gray solid;
+}
+
+.selected {
+  border: 0.15rem blue solid;
+}
+
+
+@media screen and (max-width: 600px) {
+  .ocultar-div {
+    display:none;
+  }
+}

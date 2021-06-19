@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "angular.ng-template",
+    "johnpapa.angular2",
+    "coenraads.bracket-pair-colorizer",
+    "ms-vscode.vscode-typescript-next",
+    "johnpapa.angular-essentials"
+  ]
+}

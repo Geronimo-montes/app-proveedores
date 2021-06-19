@@ -1,0 +1,171 @@
+<div class="row col-md-12 justify-content-center align-items-center">
+  <nb-card [size]="'giant'" class="col-md-8">
+    <nb-card-header>
+      <div class="row justify-content-between align-items-center">
+        Registro de producto
+        <button nbButton [status]="'danger'" [size]="'small'" [shape]="'round'"
+          (click)="close()">
+          <nb-icon icon="close-circle-outline" size="giant"></nb-icon>
+        </button>
+      </div>
+    </nb-card-header>
+    <nb-card-body>
+      <form [formGroup]="formProducto">
+        <!-- campo de imagenes -->
+        <ngx-dropzone class="mb-2 bg-dark" (change)="onSelect($event)"
+          [accept]="extensiones" [maxFileSize]="maxFileSize"
+          [disabled]="files.length == maxImagenes">
+          <ngx-dropzone-label class="text-white">
+            Arrestre y suelte para agregar la imagen.
+          </ngx-dropzone-label>
+          <ngx-dropzone-preview *ngFor="let f of files;index as i"
+            [removable]="true" (removed)="onRemove(f)">
+            <ngx-dropzone-label>Archivo#{{ i + 1 }}</ngx-dropzone-label>
+          </ngx-dropzone-preview>
+        </ngx-dropzone>
+
+        <div class="row">
+          <!-- nombre_producto      input -->
+          <div class="form-group col-md-8">
+            <label class="label">Nombre del producto</label>
+            <input formControlName="nombre_producto" type="text" nbInput
+              fullWidth shape="rectangle" placeholder="Nombre del producto"
+              [nbPopover]="templateRef" nbPopoverTrigger="focus"
+              (keyup)="error = getError('nombre_producto')"
+              (focus)="error = getError('nombre_producto')"
+              [status]="(!formProducto.get('nombre_producto').valid && formProducto.get('nombre_producto').touched)? invalid : valid">
+          </div>
+
+          <!-- idsubcategoria       select -->
+          <div class="form-group col-md-4">
+            <label class="label">Seleccione categoría</label>
+            <nb-select formControlName="idsubcategoria" fullWidth
+              shape="rectangle" [nbPopover]="templateRef"
+              nbPopoverTrigger="focus"
+              (keyup)="error = getError('idsubcategoria')"
+              (focus)="error = getError('idsubcategoria')"
+              [status]="(!formProducto.get('idsubcategoria').valid && formProducto.get('idsubcategoria').touched)? invalid : valid">
+              <nb-option [value]="''">Seleccione la subcategoría
+              </nb-option>
+              <nb-option [value]="1">Option 1</nb-option>
+              <nb-option [value]="2">Option 2</nb-option>
+              <nb-option [value]="3">Option 3</nb-option>
+              <nb-option [value]="4">Option 4</nb-option>
+            </nb-select>
+          </div>
+        </div>
+
+        <div class="row">
+          <!-- unidad_por_paquete   input -->
+          <div class="form-group col-md-3">
+            <label class="label">Unidades por paquete</label>
+            <input formControlName="unidad_por_paquete"
+              placeholder="Unidades por paquete" type="text" nbInput fullWidth
+              shape="rectangle" [nbPopover]="templateRef"
+              nbPopoverTrigger="focus"
+              (keyup)="error = getError('unidad_por_paquete')"
+              (focus)="error = getError('unidad_por_paquete')"
+              [status]="(!formProducto.get('unidad_por_paquete').valid && formProducto.get('unidad_por_paquete').touched)? invalid : valid">
+          </div>
+
+          <!-- idformatoventa       select -->
+          <div class="form-group col-md-3">
+            <label class="label">Formato de venta</label>
+            <nb-select formControlName="idformatoventa" fullWidth
+              shape="rectangle" [nbPopover]="templateRef"
+              nbPopoverTrigger="focus"
+              (keyup)="error = getError('idformatoventa')"
+              (focus)="error = getError('idformatoventa')"
+              [status]="(!formProducto.get('idformatoventa').valid && formProducto.get('idformatoventa').touched)? invalid : valid"
+              [size]="'medium'">
+              <nb-option [value]="''">Seleccione formato
+              </nb-option>
+              <nb-option [value]="1">Caja</nb-option>
+              <nb-option [value]="2">Pack</nb-option>
+              <nb-option [value]="3">Charola</nb-option>
+              <nb-option [value]="4">Granel</nb-option>
+            </nb-select>
+          </div>
+
+          <!-- precio               input -->
+          <div class="form-group col-md-2">
+            <label class="label">Precio</label>
+            <input formControlName="precio" placeholder="Ej. $150.00"
+              type="text" nbInput fullWidth shape="rectangle"
+              [nbPopover]="templateRef" nbPopoverTrigger="focus"
+              (keyup)="error = getError('precio')"
+              (focus)="error = getError('precio')"
+              [status]="(!formProducto.get('precio').valid && formProducto.get('precio').touched)? invalid : valid">
+          </div>
+
+          <!-- stock                input -->
+          <div class="form-group col-md-2">
+            <label class="label">Stock actual</label>
+            <input formControlName="stock" placeholder="Ej. 10" type="text"
+              nbInput fullWidth shape="rectangle" [nbPopover]="templateRef"
+              nbPopoverTrigger="focus" (keyup)="error = getError('stock')"
+              nbPopoverTrigger="focus" (focus)="error = getError('stock')"
+              [status]="(!formProducto.get('stock').valid && formProducto.get('stock').touched)? invalid : valid">
+          </div>
+
+          <!-- descuento_porcentaje input -->
+          <div class="form-group col-md-2">
+            <label class="label">Descuento</label>
+            <nb-select formControlName="descuento_porcentaje" fullWidth
+              shape="rectangle" [nbPopover]="templateRef"
+              nbPopoverTrigger="focus"
+              (keyup)="error = getError('descuento_porcentaje')"
+              (focus)="error = getError('descuento_porcentaje')"
+              [status]="(!formProducto.get('descuento_porcentaje').valid && formProducto.get('descuento_porcentaje').touched)? invalid : valid"
+              [size]="'medium'">
+              <nb-option *ngFor="let porcentaje of porcentajes;index as i"
+                [value]="i">{{porcentaje}}</nb-option>
+            </nb-select>
+          </div>
+        </div>
+
+        <div class="row">
+          <!-- descripcion_corta    txtA -->
+          <div class="form-group col-md-3">
+            <label class="label">Descripción breve</label>
+            <textarea formControlName="descripcion_corta" [rows]="4" nbInput
+              fullWidth shape="rectangle" [style]="'resize: none;'"
+              placeholder="Descripción breve del producto"
+              [nbPopover]="templateRef" nbPopoverTrigger="focus"
+              (keyup)="countDesCorta = this.formProducto.get('descripcion_corta').value.length"
+              (keyup)="error = getError('descripcion_corta')"
+              (focus)="error = getError('descripcion_corta')"
+              [status]="(!formProducto.get('descripcion_corta').valid && formProducto.get('descripcion_corta').touched)? invalid : valid"></textarea>
+            <label class="label">{{countDesCorta}}/100</label>
+          </div>
+
+          <!-- descripcion_extensa  txtA -->
+          <div class="form-group col-md-9">
+            <label class="label">Descripción extensa del producto</label>
+            <textarea formControlName="descripcion_extensa" [rows]="4" nbInput
+              fullWidth shape="rectangle" [style]="'resize: none;'"
+              placeholder="Descripción breve del producto"
+              [nbPopover]="templateRef" nbPopoverTrigger="focus"
+              (keyup)="countDesExtensa = this.formProducto.get('descripcion_extensa').value.length"
+              (keyup)="error = getError('descripcion_extensa')"
+              (focus)="error = getError('descripcion_extensa')"
+              [status]="(!formProducto.get('descripcion_extensa').valid && formProducto.get('descripcion_extensa').touched)? invalid : valid"></textarea>
+            <label class="label">{{countDesExtensa}}/600</label>
+          </div>
+        </div>
+      </form>
+    </nb-card-body>
+    <nb-card-footer class="row justify-content-end">
+      <button class="mr-3" nbButton [status]="'primary'" [size]="'small'" hero
+        [disabled]="formProducto.invalid">
+        <nb-icon icon="checkmark-outline"></nb-icon>Confirmar
+      </button>
+    </nb-card-footer>
+  </nb-card>
+</div>
+<!-- Template para los popovers -->
+<ng-template #templateRef>
+  <div *ngIf="error !== ''" class="bg-danger rounded p-2">
+    <span><i class="fas fa-exclamation-circle warning m-1"></i>{{error}}</span>
+  </div>
+</ng-template>

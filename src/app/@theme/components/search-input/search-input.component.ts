@@ -10,13 +10,15 @@ import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular
            #input
            [class.hidden]="!isInputShown"
            (blur)="hideInput()"
-           (input)="onInput($event)">
+           (keyup.enter)="onInput($event)">
   `,
 })
 export class SearchInputComponent {
   @ViewChild('input', { static: true }) input: ElementRef;
 
   @Output() search: EventEmitter<string> = new EventEmitter<string>();
+
+  constructor() { }
 
   isInputShown = false;
 
@@ -29,7 +31,8 @@ export class SearchInputComponent {
     this.isInputShown = false;
   }
 
-  onInput(val: string) {
+  onInput(val: any) {
+    // console.log(val);
     this.search.emit(val);
   }
 }

@@ -1,0 +1,45 @@
+<nb-card [size]="'large'" *ngIf="sucursales.length > 0">
+  <nb-card-header>
+    Sucursales disponibles
+  </nb-card-header>
+  <nb-card-body class="picture"
+    style.background-image="url({{sucursales[sucursalSelected]?.ruta_imagen}})">
+    <div class="details p-4 col-md-12">
+      <ul style="list-style: none;">
+        <li>
+          <h4>{{sucursales[sucursalSelected]?.nombre}}</h4>
+        </li>
+        <a class="social-link row mt-4">
+          <i class="col-md-1 text-primary link-icon fas fa-phone"></i>
+          <p class="col-md-10 text-icon">
+            {{sucursales[sucursalSelected]?.telefono}}
+          </p>
+        </a>
+        <a class="social-link row">
+          <i class="col-md-1 text-primary link-icon fas fa-location-arrow"></i>
+          <p class="col-md-10 text-icon">
+            {{sucursales[sucursalSelected]?.direccion}}
+          </p>
+        </a>
+        <a class="social-link row"
+          href="{{sucursales[sucursalSelected]?.ubicacion}}">
+          <i class="col-md-1 text-primary link-icon fas fa-map-marker-alt"></i>
+          <p class="col-md-10 text-icon">https://www.google.com.mx/maps</p>
+        </a>
+      </ul>
+    </div>
+    <a class="carousel-control-prev" role="button" data-slide="prev"
+      (click)="prev()">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" role="button" data-slide="next"
+      (click)="next()">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </nb-card-body>
+  <nb-card-footer>
+    footer
+  </nb-card-footer>
+</nb-card>
