@@ -17,11 +17,14 @@ export class RolProviderService implements NbRoleProvider {
    * @returns Observable<string> Rol del usuario actual, por defecto invitado
    */
   getRole(): Observable<string> {
-    return this.authService.onTokenChange()
-      .pipe(
-        map((token: NbAuthJWTToken) => {
-          return token.isValid() ? token.getPayload().usuario.rol : 'invitado';
-        }),
-      );
+    if (this.authService.authenticate)
+      return this.authService.onTokenChange()
+        .pipe(
+          map((token: NbAuthJWTToken) => {
+            return token.isValid() ? token.getPayload().usuario.rol : 'invitado';
+          }),
+        );
+    else
+      return new Observable(observable => observable.next('invitado'));
   }
 }

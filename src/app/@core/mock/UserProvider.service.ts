@@ -6,7 +6,6 @@ import { IuserProveedor, IuserTienda, UserData } from '../data/usersModel';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Iresponse } from '../data/publicModel';
-import { Subscription } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -27,12 +26,15 @@ export class UserProviderService extends UserData {
    * @returns IuserProveedor | IuserTienda
    */
   getUser$(): Observable<IuserProveedor | IuserTienda> {
-    return this.authService.onTokenChange()
-      .pipe(
-        map((token: NbAuthJWTToken) => {
-          return token.isValid() ? token.getPayload().usuario : null;
-        }),
-      );
+    if (this.authService.authenticate)
+      return this.authService.onTokenChange()
+        .pipe(
+          map((token: NbAuthJWTToken) => {
+            return token.isValid() ? token.getPayload().usuario : null;
+          }),
+        );
+    else
+      return null;
   }
 
   /**
